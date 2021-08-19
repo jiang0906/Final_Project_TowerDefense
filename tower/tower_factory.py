@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 import pygame
 import os
 from tower.attack_strategy import AOE, SingleAttack , Slowly , Attack_double
-from settings import WIN_WIDTH, WIN_HEIGHT
+from settings import WIN_WIDTH, WIN_HEIGHT, IMAGE_PATH
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from tower.attack_strategy import AttackStrategy
@@ -11,12 +11,12 @@ if TYPE_CHECKING:
 
 
 # 攻擊的塔
-MASK_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join("images", "mask.png")), (70, 70))
-ALCOHOL_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join("images", "alcohol.png")), (60, 70))
-INJECTION_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join("images", "injection.png")), (60, 70))
-FOREHEAD_GUN_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join("images", "forehead_gun.png")), (70, 70))
+MASK_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join(IMAGE_PATH, "mask.png")), (70, 70))
+ALCOHOL_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join(IMAGE_PATH, "alcohol.png")), (60, 70))
+INJECTION_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join(IMAGE_PATH, "injection.png")), (60, 70))
+FOREHEAD_GUN_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join(IMAGE_PATH, "forehead_gun.png")), (70, 70))
 # 黃色點點
-PLOT_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join("images", "vacant_lot.png")), (20, 20))
+PLOT_IMAGE= pygame.transform.scale(pygame.image.load(os.path.join(IMAGE_PATH, "vacant_lot.png")), (20, 20))
 
 class Vacancy:
     def __init__(self, x: int, y: int):
@@ -103,13 +103,3 @@ class Tower:
 
     def clicked(self, x: int, y: int):
         return True if self.rect.collidepoint(x, y) else False
-
-    '''def draw_effect_range(self, win):
-        """
-        draw the tower effect range, which is a transparent circle.
-        印出半透明的圓
-        """
-        surface = pygame.Surface((WIN_WIDTH, WIN_HEIGHT), pygame.SRCALPHA)
-        transparency = 120
-        pygame.draw.circle(surface, (128, 128, 128, transparency), self.rect.center, self._range[self.level])
-        win.blit(surface, (0, 0))'''
